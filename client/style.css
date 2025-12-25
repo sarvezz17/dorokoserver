@@ -52,3 +52,22 @@ button {
   max-height: 120px;
   overflow-y: auto;
 }
+
+.auction-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: 16px;
+}
+
+.player-panel, .bid-panel, .team-panel {
+  background: #020617;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.team-panel div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #e5e7eb;
+}
