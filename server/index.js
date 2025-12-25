@@ -75,3 +75,40 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log("Auction server running on port", PORT);
 });
+
+// ===== ROOM SYSTEM (ADD-ON) =====
+const rooms = {};
+
+function createRoom() {
+  return Math.random().toString(36).substring(2, 8).toUpperCase();
+}
+
+io.on("connection", socket => {
+
+  socket.on("create-room", () => {
+    const code = createRoom();
+    rooms[code] = {
+      host: socket.id,
+      teams: {},
+      purse: {},
+      playersBought: {},
+      currentPlayer: null,
+      status: "WAITING"
+    };
+    socket.join(code);
+    socket.emit("room-created", code);
+  });
+
+  socket.on("join-room", ({ roomCode, teamName }) => {
+    if (!rooms[roomCode]) return;
+
+    rooms[roomCode].teams[socket.id] = teamName;
+    rooms[roomCode].purse[teamName] = 120;
+    rooms[roomCode].playersBought[teamName] = [];
+
+    socket.join(roomCode);
+    io.to(roomCode).emit("teams-update", rooms[roomCode]);
+  });
+
+});
+
