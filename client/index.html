@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>IPL Cloud Auction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="card">
+    <h1>🏏 IPL Mock Auction</h1>
+    <input id="name" placeholder="Enter your name"/>
+    <button onclick="join()">Join Game</button>
+
+    <p class="users">Players: <span id="users">0</span>/14</p>
+
+    <div class="bid-box">
+      <h2>₹ <span id="bid">0</span> Cr</h2>
+      <p class="timer">⏱️ <span id="timer">15</span>s</p>
+    </div>
+
+    <div class="actions">
+      <button onclick="bid(1)">+1 Cr</button>
+      <button onclick="bid(2)">+2 Cr</button>
+      <button onclick="bid(5)">+5 Cr</button>
+    </div>
+
+    <div id="log"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
