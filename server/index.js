@@ -86,6 +86,22 @@ function createRoom() {
 }
 
 io.on("connection", socket => {
+  socket.on("evaluate-room", roomCode => {
+  const room = rooms[roomCode];
+  if (!room) return;
+
+  const results = {};
+
+  for (let team in room.playersBought) {
+    results[team] = evaluateTeam(
+      room.playersBought[team],
+      room.purse[team]
+    );
+  }
+
+  io.to(roomCode).emit("evaluation-result", results);
+});
+
 
   socket.on("create-room", () => {
     const code = createRoom();
