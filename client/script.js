@@ -1,3 +1,6 @@
+function evaluateAuction(roomCode) {
+  socket.emit("evaluate-room", roomCode);
+}
 
 const socket = io();
 let joined = false;
@@ -46,5 +49,13 @@ socket.on("teams-update", data => {
     const div = document.createElement("div");
     div.innerHTML = `<span>Team ${i+1}</span><span>₹${purse} Cr</span>`;
     panel.appendChild(div);
+// ===== AUCTION EVALUATION RESULT =====
+socket.on("evaluation-result", results => {
+  const winner = Object.entries(results)
+    .sort((a, b) => b[1] - a[1])[0];
+
+  alert(`🏆 Predicted Winner: ${winner[0]} (Score: ${winner[1]})`);
+});
+
   });
 });
