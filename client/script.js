@@ -37,3 +37,14 @@ function bid(step) {
   const current = parseInt(document.getElementById("bid").innerText);
   socket.emit("bid", current + step);
 }
+
+socket.on("teams-update", data => {
+  const panel = document.getElementById("teamPanel");
+  panel.innerHTML = "";
+
+  Object.values(data.purse).forEach((purse, i) => {
+    const div = document.createElement("div");
+    div.innerHTML = `<span>Team ${i+1}</span><span>₹${purse} Cr</span>`;
+    panel.appendChild(div);
+  });
+});
