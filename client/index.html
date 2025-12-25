@@ -68,27 +68,33 @@
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
+    <div id="log"></div>
+
+  <!-- ==== MOCK AUCTION PANEL ==== -->
+  <div class="auction-layout">
+    <div class="player-panel">
+      <h2 id="playerName">Waiting for Player</h2>
+      <p id="playerRole"></p>
+      <p>Base: ₹<span id="basePrice">0</span> Cr</p>
+    </div>
+
+    <div class="bid-panel">
+      <h1>₹ <span id="currentBid">0</span> Cr</h1>
+      <p>⏱ <span id="timer">15</span>s</p>
+    </div>
+
+    <div class="team-panel" id="teamPanel"></div>
+  </div>
+
+  <button onclick="evaluateAuction(currentRoom)">
+    🏆 Evaluate Auction
+  </button>
+
+  <!-- Socket scripts MUST be last -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
 
-<!-- ===== MOCK AUCTION PANEL ===== -->
-<div class="auction-layout">
-  <div class="player-panel">
-    <h2 id="playerName">Waiting for Player</h2>
-    <p id="playerRole"></p>
-    <p>Base: ₹<span id="basePrice">0</span> Cr</p>
-  </div>
-
-  <div class="bid-panel">
-    <h1>₹ <span id="currentBid">0</span> Cr</h1>
-    <p>⏱ <span id="timer">15</span>s</p>
-  </div>
-
-  <div class="team-panel" id="teamPanel">
-    <!-- Teams appear here -->
-  </div>
-</div>
-<button onclick="evaluateAuction(currentRoom)">
-  🏆 Evaluate Auction
-</button>
-
+</body>
+</html>
