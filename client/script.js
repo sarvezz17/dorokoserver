@@ -31,8 +31,13 @@ function join() {
 
 socket.on("room-created", code => {
   currentRoom = code;
-  alert("Room Code: " + code);
+
+  const badge = document.getElementById("roomBadge");
+  badge.innerText = "Room Code: " + code;
+  badge.style.display = "block";
 });
+
+
 
 socket.on("users", users => {
   document.getElementById("users").innerText = users.length;
