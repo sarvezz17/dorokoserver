@@ -79,10 +79,12 @@ socket.on("teams-update", data => {
 // ===== AUCTION EVALUATION RESULT =====
 socket.on("evaluation-result", results => {
   const winner = Object.entries(results)
-    .sort((a, b) => b[1] - a[1])[0];
+    .sort((a,b) => b[1] - a[1])[0];
 
-  alert(`🏆 Predicted Winner: ${winner[0]} (Score: ${winner[1]})`);
+  document.getElementById("evaluationResult").innerText =
+    `🏆 Predicted Winner: ${winner[0]} (Score: ${winner[1]})`;
 });
+
 
   });
 });
