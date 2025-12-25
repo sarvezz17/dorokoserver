@@ -1,16 +1,32 @@
-function evaluateAuction(roomCode) {
-  socket.emit("evaluate-room", roomCode);
+function evaluateAuction() {
+  if (!currentRoom) {
+    alert("Room code not found");
+    return;
+  }
+  socket.emit("evaluate-room", currentRoom);
 }
+console.log("Current Room:", currentRoom);
+
+let currentRoom = null;
 
 const socket = io();
 let joined = false;
 
 function join() {
   if (joined) return;
+
   const name = document.getElementById("name").value || "Player";
+  const roomInput = document.getElementById("roomCode");
+
+  // 👇 SAVE ROOM CODE IF USER ENTERED ONE
+  if (roomInput && roomInput.value) {
+    currentRoom = roomInput.value.trim().toUpperCase();
+  }
+
   socket.emit("join", name);
   joined = true;
 }
+
 socket.on("room-created", code => {
   currentRoom = code;
   alert("Room Code: " + code);
