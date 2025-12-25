@@ -13,14 +13,12 @@ function evaluateAuction() {
 }
 console.log("Current Room:", currentRoom);
 
-
 function join() {
   if (joined) return;
 
   const name = document.getElementById("name").value || "Player";
   const roomInput = document.getElementById("roomCode");
 
-  // 👇 SAVE ROOM CODE IF USER ENTERED ONE
   if (roomInput && roomInput.value) {
     currentRoom = roomInput.value.trim().toUpperCase();
   }
@@ -28,6 +26,8 @@ function join() {
   socket.emit("join", name);
   joined = true;
 }
+
+
 
 socket.on("room-created", code => {
   currentRoom = code;
