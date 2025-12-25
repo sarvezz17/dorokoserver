@@ -1,3 +1,9 @@
+let currentRoom = null;
+
+const socket = io();
+let joined = false;
+
+
 function evaluateAuction() {
   if (!currentRoom) {
     alert("Room code not found");
@@ -7,10 +13,6 @@ function evaluateAuction() {
 }
 console.log("Current Room:", currentRoom);
 
-let currentRoom = null;
-
-const socket = io();
-let joined = false;
 
 function join() {
   if (joined) return;
