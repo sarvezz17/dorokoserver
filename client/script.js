@@ -11,6 +11,10 @@ function join() {
   socket.emit("join", name);
   joined = true;
 }
+socket.on("room-created", code => {
+  currentRoom = code;
+  alert("Room Code: " + code);
+});
 
 socket.on("users", users => {
   document.getElementById("users").innerText = users.length;
