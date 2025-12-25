@@ -10,7 +10,7 @@ const io = new Server(server);
 // ✅ Serve frontend files
 app.use(express.static(path.join(__dirname, "../client")));
 
-// ✅ Serve index.html on root "/"
+// ✅ Serve homepage
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/index.html"));
 });
